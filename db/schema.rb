@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "user_eligibility", limit: 15
     t.string  "user_first_name",  limit: 45
     t.string  "user_last_name",   limit: 45
+    t.string  "user_name",        limit: 45
   end
 
   create_table "vaccinations", primary_key: "vaccination_id", force: :cascade do |t|
