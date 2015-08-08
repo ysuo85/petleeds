@@ -6,7 +6,7 @@ class UsersController < ApplicationController
           :user_email => account.email,
           :user_first_name => params[:user][:first_name],
           :user_last_name => params[:user][:last_name],
-          :active_indicator => true,
+          :active_indicator => true
       		#:primary_administrator => true,
       		#:administrator =>  true,
           #:primary_administrator =>true
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 		User.update(
 		    :user_email=>account.email,
 				:user_first_name=>params[:user][:first_name],
-				:user_last_name=>params[:user][last_name]
+				:user_last_name=>params[:user][:last_name]
 		)
 	end
 
