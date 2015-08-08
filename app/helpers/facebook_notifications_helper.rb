@@ -1,0 +1,2 @@
+module FacebookNotificationsHelper
+end
