@@ -1,0 +1,2 @@
+class TwitterNotificationsController < ApplicationController
+end
