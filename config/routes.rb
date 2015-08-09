@@ -10,7 +10,7 @@ Rails.application.routes.draw do
    match 'shelters/create' => 'shelters#create',:via => :post
    match 'shelters/read' => 'shelters#read', :via => :get
 
-   match 'fundrasing/create' => 'fundraising#create', :via => :post
-   match 'fundrasing/read' => 'fundraising#read', :via => :get
+   match 'fundraising/create' => 'fundraising#create', :via => :post
+   match 'fundraising/read' => 'fundraising#read', :via => :get
 
 end
