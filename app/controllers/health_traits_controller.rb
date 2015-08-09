@@ -1,0 +1,2 @@
+class HealthTraitsController < ApplicationController
+end

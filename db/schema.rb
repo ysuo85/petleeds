@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "animals", ["shelter_id"], name: "shelter_id", using: :btree
   add_index "animals", ["user_id"], name: "user_id", using: :btree
 
+  create_table "behavioral_traits", primary_key: "behavioral_trait_id", force: :cascade do |t|
+    t.text "behavioral_trait_description", limit: 4294967295
+  end
+
   create_table "breed", primary_key: " breed_id", force: :cascade do |t|
     t.string "breed_name", limit: 20
   end
@@ -36,6 +40,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "fundraising_campaign_value",       limit: 4
     t.text    "fundraising_campaign_description", limit: 4294967295
     t.string  "fundraising_campaign_name",        limit: 255
+  end
+
+  create_table "health_traits", primary_key: "health_trait_id", force: :cascade do |t|
+    t.text "health_trait_description", limit: 4294967295
   end
 
   create_table "shelters", primary_key: "shelter_id", force: :cascade do |t|
@@ -68,7 +76,7 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "vaccinations", primary_key: "vaccination_id", force: :cascade do |t|
-    t.string "vaccination_name", limit: 50
+    t.string "vaccination_description", limit: 50
   end
 
   add_foreign_key "animals", "shelters", primary_key: "shelter_id", name: "animals_ibfk_2"
