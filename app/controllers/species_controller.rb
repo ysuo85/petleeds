@@ -11,7 +11,7 @@ class SpeciesController < ApplicationController
 
   def destroy
     @species = Species.find(params[:species_id])
-    @species.destroy()
+    @species.destroy
     @species.save
     render :status => 200, :json => {:success => true, :info => "Load Successful"}
   end
