@@ -1,309 +1,302 @@
 <!DOCTYPE html>
 <html>
+	<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
+				<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<head>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.10.0/angular-material.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.10.0/angular-material.js"></script>
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<style type="text/css">
-	p {
-		position: relative;
-		left: 265px;
-		font-family: Helvetica;
-		font-weight: bold;
+			<link rel="stylesheet" type="text/css" href="css/main.css">
 
-	}
+			<link href="css/hover.css" rel="stylesheet" media="all">
 
-	.p {
-		position: relative;
-		left: 245px;
-		font-family: Helvetica;
-		font-weight: bold;
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.10.0/angular-material.css" rel="stylesheet">
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.10.0/angular-material.js"></script>
 
-	}
+			<style type="text/css">
+				h5 {
+					position: relative;
+					left: 265px;
+					font-family: Helvetica;
+					font-weight: bold;
 
-	.form-control{
-		position: relative;
-		left: 150px;
-	}
+				}
 
-	/*.help-block {
+				.p {
+					position: relative;
+					left: 245px;
+					font-family: Helvetica;
+					font-weight: bold;
 
-		position: relative;
-		left: 150px;
-	}*/
+				}
 
-	label {
-		position: relative;
-		left: 220px;
-	}
+				.form-control{
+					position: relative;
+					left: 150px;
+				}
 
-	
-</style>
-</head>
-<body>
-	<div class="container">
-		<div class="col-sm-6 col-md-6 col-lg-6">
-			<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:1px solid black;border-radius:2px;">
-				<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
-					<div class="col-sm-6 col-md-6 col-lg-6">Fundraising Campaigns</div>
-					<div class="col-sm-2 col-md-2 col-lg-2">
-							<button class="btn btn-primary" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm">
-						    	Start New Campaign
-						  </button>
+				label {
+					position: relative;
+					left: 220px;
+				}
+
+				.container {
+					position: relative;
+					top: 150px;
+				}	
+			</style>
+	</head>
+
+	<body>
+		<nav>
+			<ul>
+				 <a href="index.html" class="hvr-pop">home</a>
+				 <a href="locations.html" class="hvr-pop">adopt</a>
+				 <a href="locations.html" class="hvr-pop">find a campaign</a>
+				 <a href="home.html" class="hvr-pop">login</a>
+			</ul>
+		</nav>
+
+		<div class="container">
+			<div class="col-xs-6">
+				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:1px solid black;border-radius:2px;">
+					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
+						<div class="col-xs-6">Fundraising Campaigns</div>
+						<div class="col-sm-2">
+								<button class="btn btn-primary" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm">
+							    	Start New Campaign
+							  </button>
+						</div>
+					</div>
+					<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
+						<div class="table-responsive">
+							<table class="table">
+								<thead  style="background-color:gray;">
+									<tr>
+										<th>Goal</th>
+										<th>Current Amount</th>
+										<th>Description</th>
+										<th>Edit</th>
+									</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>10,000</td>
+										<td>500</td>
+										<td>We need to raise money to sustain the shelter for the 2016-2017 year.</td>
+										<td><button class="btn btn-default">Edit</button></td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
-				<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
-					<div class="table-responsive">
-						<table class="table">
-							<thead  style="background-color:gray;">
-								<tr>
-									<th>Goal</th>
-									<th>Current Amount</th>
-									<th>Description</th>
-									<th>Edit</th>
-								</th>
-							</thead>
-							<tbody>
-								<tr>
-									<td>10,000</td>
-									<td>500</td>
-									<td>We need to raise money to sustain the shelter for the 2016-2017 year.</td>
-									<td><button class="btn btn-default">Edit</button></td>
-
-								</tr>
-							</tbody>
-						</table>
+			</div>
+			<div class="col-xs-6 col-md-6 col-lg-6">
+				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:1px solid black;border-radius:2px;">
+					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
+						<div class="col-xs-6 col-md-6 col-lg-6">Animals Up for Adoption</div>
+						<div class="col-sm-2 col-md-2 col-lg-2">
+								<button class="btn btn-primary" type="button" id="addNewAnimal" data-toggle="modal" data-target="#newAnimalForm">
+							    	Add New Animal
+							    </button>
+						</div>
+					</div>
+					<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
+						<div class="table-responsive">
+							<table class="table">
+								<thead  style="background-color:gray;">
+									<tr>
+										<th>Name</th>
+										<th>Species</th>
+										<th>Breed</th>
+										<th>Behavioral Traits</th>
+										<th>Vaccination Records</th>
+										<th>Health Traits</th>
+									</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Doge</td>
+										<td>Dog</td>
+										<td>Labrador</td>
+										<td>A</td>
+										<td>B</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>Doge</td>
+										<td>Dog</td>
+										<td>Labrador</td>
+										<td>A</td>
+										<td>B</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>Doge</td>
+										<td>Dog</td>
+										<td>Labrador</td>
+										<td>A</td>
+										<td>B</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>Doge</td>
+										<td>Dog</td>
+										<td>Labrador</td>
+										<td>A</td>
+										<td>B</td>
+										<td>C</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-6 col-md-6 col-lg-6">
-			<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:1px solid black;border-radius:2px;">
-				<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
-					<div class="col-sm-6 col-md-6 col-lg-6">Animals Up for Adoption</div>
-					<div class="col-sm-2 col-md-2 col-lg-2">
-							<button class="btn btn-primary" type="button" id="addNewAnimal" data-toggle="modal" data-target="#newAnimalForm">
-						    	Add New Animal
-						    </button>
+
+		<div id="newAnimalForm" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h5 class="modal-title">Add New Animal</h5>
+		      </div>
+				
+				<h5>Species</h5>
+
+				<div class="row">
+					<div class="col-lg-6">
+						<select class="form-control">
+					      	<option>Cat</option>
+					      	<option>Dog</option>
+					      	<option>Kangaroo</option>
+					      	<option>Rabbit</option>
+		      			</select>
 					</div>
 				</div>
-				<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
-					<div class="table-responsive">
-						<table class="table">
-							<thead  style="background-color:gray;">
-								<tr>
-									<th>Name</th>
-									<th>Species</th>
-									<th>Breed</th>
-									<th>Behavioral Traits</th>
-									<th>Vaccination Records</th>
-									<th>Health Traits</th>
-								</th>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Doge</td>
-									<td>Dog</td>
-									<td>Labrador</td>
-									<td>A</td>
-									<td>B</td>
-									<td>C</td>
-								</tr>
-								<tr>
-									<td>Doge</td>
-									<td>Dog</td>
-									<td>Labrador</td>
-									<td>A</td>
-									<td>B</td>
-									<td>C</td>
-								</tr>
-								<tr>
-									<td>Doge</td>
-									<td>Dog</td>
-									<td>Labrador</td>
-									<td>A</td>
-									<td>B</td>
-									<td>C</td>
-								</tr>
-								<tr>
-									<td>Doge</td>
-									<td>Dog</td>
-									<td>Labrador</td>
-									<td>A</td>
-									<td>B</td>
-									<td>C</td>
-								</tr>
-							</tbody>
-						</table>
+				<hr>
+				<h5>Breed</h5>
+				<div class="row">
+					<div class="col-lg-6">
+						<select class="form-control">
+					      	<option>Yorki</option>
+					      	<option>German Shephard</option>
+					      	<option>Bull Dog</option>
+					      	<option>Labadore</option>
+		      			</select>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div id="newAnimalForm" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Add New Animal</h4>
-	      </div>
-			
-			<p>Species</p>
-
-			<div class="row">
-				<div class="col-lg-6">
-					<select class="form-control">
-				      	<option>Cat</option>
-				      	<option>Dog</option>
-				      	<option>Kangaroo</option>
-				      	<option>Rabbit</option>
-	      			</select>
+				<hr>
+				<h5>Behavioral Traits</h5>
+				<div class="row">
+					<div class="col-lg-6">
+						<select class="form-control">
+					      	<option>obedient</option>
+					      	<option>Silent</option>
+					      	<option>Aggresive</option>
+					      	<option>Loud</option>
+		      			</select>
+					</div>
 				</div>
-			</div>
-			<hr>
-			<p>Breed</p>
-			<div class="row">
-				<div class="col-lg-6">
-					<select class="form-control">
-				      	<option>Yorki</option>
-				      	<option>German Shephard</option>
-				      	<option>Bull Dog</option>
-				      	<option>Labadore</option>
-	      			</select>
+				<hr>
+				<h5>Health</h5>
+				<div class="row">
+					<div class="col-lg-6">
+						<select class="form-control">
+					      	<option>A+</option>
+					      	<option>A-</option>
+					      	<option>B+</option>
+					      	<option>B-</option>
+		      			</select>
+					</div>
 				</div>
-			</div>
-			<hr>
-			<p class="p">Behavioral Trait</p>
-			<div class="row">
-				<div class="col-lg-6">
-					<select class="form-control">
-				      	<option>obedient</option>
-				      	<option>Silent</option>
-				      	<option>Aggresive</option>
-				      	<option>Loud</option>
-	      			</select>
+				<hr>
+				<h5>Vaccination</h5>
+				<div class="row">
+					<div class="col-lg-6">
+						<select class="form-control">
+					      	<option>distemper</option>
+					      	<option>parvovirus</option>
+					      	<option>hepatitis</option>
+					      	<option>Rabbies</option>
+		      			</select>
+					</div>
 				</div>
-			</div>
-			<hr>
-			<p>Health</p>
-			<div class="row">
-				<div class="col-lg-6">
-					<select class="form-control">
-				      	<option>A+</option>
-				      	<option>A-</option>
-				      	<option>B+</option>
-				      	<option>B-</option>
-	      			</select>
+				<hr>
+				<h5>Animal Name</h5>
+				<div class="row">
+					<div class="col-lg-6">
+						<select class="form-control">
+					      	<option>Lucy</option>
+					      	<option>Kitty</option>
+					      	<option>Laci</option>
+					      	<option>Max</option>
+		      			</select>
+					</div>
 				</div>
-			</div>
-			<hr>
-			<p>Vaccination</p>
-			<div class="row">
-				<div class="col-lg-6">
-					<select class="form-control">
-				      	<option>distemper</option>
-				      	<option>parvovirus</option>
-				      	<option>hepatitis</option>
-				      	<option>Rabbies</option>
-	      			</select>
-				</div>
-			</div>
-			<hr>
-			<p>Animal Name</p>
-			<div class="row">
-				<div class="col-lg-6">
-					<select class="form-control">
-				      	<option>Lucy</option>
-				      	<option>Kitty</option>
-				      	<option>Laci</option>
-				      	<option>Max</option>
-	      			</select>
-				</div>
-			</div>
 
-
-
-			      <!-- <div class="modal-body">
-			        <p>Some text in the modal.</p>
-			      </div> -->
-					
-
-
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		 	        <button type="button" class="btn btn-primary" id="saveNewAnimal" data-dismiss="modal">Add</button>
-			      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	 	        <button type="button" class="btn btn-primary" id="saveNewAnimal" data-dismiss="modal">Add</button>
+		      </div>
 	    </div>
-
 	  </div>
 	</div>
 
-	<div id="newCampaignForm" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Create A New Campaign</h4>
+		<div id="newCampaignForm" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h5 class="modal-title">Create A New Campaign</h5>
 
-
-
-
-	
-			<div class="row">
-		        <div class="col-lg-6">
-	                <div class="form-group">
-	                    <label>Campaign Name</label>
-	                    <input placeholder="Enter campaign Name here" class="form-control">
-	                    
+		
+				<div class="row">
+			        <div class="col-lg-6">
+		                <div class="form-group">
+		                    <label>Campaign Name</label>
+		                    <input placeholder="Enter campaign Name here" class="form-control">
+		                    
+		                </div>
+		            </div>
+		        </div>
+				
+	            <div class="row">
+		        	<div class="col-lg-6">
+	                    <div class="form-group">
+	                        <label>Campaign Goal</label>
+	                        <input placeholder="Enter campaign goal here " class="form-control">
+	                        
+	                    </div>
 	                </div>
-	            </div>
-	        </div>
-			
-			
-            <div class="row">
-	        	<div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Campaign Goal</label>
-                        <input placeholder="Enter campaign goal here " class="form-control">
-                        
-                    </div>
-                </div>
-    		</div>
-			
-			<div class="row">
-		        <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Campaign Description</label>
-                        <input placeholder="Enter campaign description here" class="form-control">
-                        
-                    </div>
-                </div>
-    		</div>
-
-	      </div>
-	      
-
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-	        <button type="button" class="btn btn-primary" id="saveNewCampaign" data-dismiss="modal">Save</button>
-	      </div>
-
-	    </div>
-
-	  </div>
-	</div>
-
-
-
-</body>
+	    		</div>
+				
+				<div class="row">
+			        <div class="col-lg-6">
+	                    <div class="form-group">
+	                        <label>Campaign Description</label>
+	                        <input placeholder="Enter campaign description here" class="form-control">       
+	                    </div>
+	                </div>
+	    		</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		        <button type="button" class="btn btn-primary" id="saveNewCampaign" data-dismiss="modal">Save</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</body>
 </html>
