@@ -2,7 +2,7 @@ class FundraisingController < ApplicationController
 
 
   def create
-    fund = FundraisingCampaign.create(
+    FundraisingCampaign.create(
       :fundraising_campaign_name => params[:fundraising_campaign_name],
       :fundraising_campaign_goal => params[:fundraising_campaign_goal],
       :fundraising_campaign_description => params[:fundraising_campaign_description]
@@ -20,13 +20,13 @@ class FundraisingController < ApplicationController
 
   def update
     FundraisingCampaign.update(params[:fundraising_campaign_id], :fundraising_campaign_value => params[:fundraising_campaign_value])
-    render :status => 200, :json => { :success => true, :info => "Load Successful"}
+    render :status => 200, :json => { :success => true, :info => "Update Successful"}
   end
 
   def destroy
-    @fund = FundraisingCampaign.find_by_id(params[:fundraising_campaign_id])
+    @fund = FundraisingCampaign.find(params[:fundraising_campaign_id])
     @fund.destroy
     @fund.save
-    render :status => 200, :json => { :success => true, :info => "Load Successful"}
+    render :status => 200, :json => { :success => true, :info => "Update Successful"}
   end
 end

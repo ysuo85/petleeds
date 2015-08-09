@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "users", primary_key: "user_id", force: :cascade do |t|
-    t.string  "user_role",        limit: 7
-    t.integer "user_cell_phone",  limit: 4
+    t.string  "user_role",        limit: 10
+    t.integer "user_cell_phone",  limit: 12
     t.string  "user_eligibility", limit: 15
     t.string  "user_first_name",  limit: 45
     t.string  "user_last_name",   limit: 45
