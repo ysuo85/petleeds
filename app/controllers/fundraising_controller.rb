@@ -13,7 +13,7 @@ class FundraisingController < ApplicationController
 
   def read
     #fund = Fundraising.find(:all)
-    funds = FundraisingCampaign.find_by_id("SELECT * FROM fundrasing_campaigns")
+    funds = FundraisingCampaign.find_by_sql("SELECT * FROM fundraising_campaigns")
 
     render :json => funds, :except => [:id]
   end
