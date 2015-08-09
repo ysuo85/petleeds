@@ -7,6 +7,8 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
 		<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<script type="text/javascript" src="https://js.braintreegateway.com/v1/braintree.js">
+    </script>
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -59,6 +61,7 @@
 			}
 
 	</style>
+
 	<script>
 		$(document).ready(function() {
 			var input = "";
@@ -71,13 +74,19 @@
 				success: function(data) {
 					console.log(data);
 					data.forEach(function(row){
-						input = input + "<tr><td>" + row.fundraising_campaign_name + "</td>" + "<td><div class='overflow'>" + row.fundraising_campaign_description + "</div></td>" + "<td>" + row.fundraising_campaign_goal + "</td>" + "</td>" + "<td class='col-md-1 col-lg-1 col-sm-1'>" + row.fundraising_campaign_value + '</td><td><button class="btn btn-default">Sponsor</button></td></tr>';
+						input = input + "<tr><td>" + row.fundraising_campaign_name + "</td>" + "<td><div class='overflow'>" + row.fundraising_campaign_description + "</div></td>" + "<td>" + row.fundraising_campaign_goal + "</td>" + "</td>" + "<td class='col-md-1 col-lg-1 col-sm-1'>" + row.fundraising_campaign_value + '</td><td><button class="btn btn-default" onclick="sponsorNow('+row.fundraising_campaign_id+')">Sponsor</button></td></tr>';
 					})
 					console.log(input);
 					$('.fundraisingRows').html(input);
 				}
 			});
 		});
+	</script>
+	<script>
+		function sponsorNow(id){
+
+
+		}
 	</script>
 </head>
 
@@ -101,7 +110,7 @@
 								<th>Description</th>
 								<th>Goal</th>
 								<th>Current Amount</th>
-								<th>Edit</th>
+								<th>Sponsor</th>
 							</th>
 						</thead>
 						<tbody class="fundraisingRows">
@@ -111,3 +120,30 @@
 			</div>
 </body>
 </html>
+<html>
+  <head><title>Braintree Payment Form</title>  </head>
+  <body>
+    <h1>Braintree Payment Form</h1>
+    <div>
+      <form action="/create_transaction" method="POST" id="braintree-payment-form">
+        <p><label>Card Number</label>
+          <input type="text" size="20" autocomplete="off" data-encrypted-name="number" />
+        </p>
+        <p><label>CVV</label>
+          <input type="text" size="4" autocomplete="off" data-encrypted-name="cvv" />
+        </p>
+        <p><label>Expiration (MM/YYYY)</label> 
+          <input type="text" size="2" data-encrypted-name="month" /> / 
+          <input type="text" size="4" data-encrypted-name="year" />
+        </p>
+        <input type="submit" id="submit" />
+      </form>
+    </div> 
+
+    <script type="text/javascript" src="https://js.braintreegateway.com/v1/braintree.js">
+    </script>
+    <script type="text/javascript">
+		var braintree = Braintree.create('MIIBCgKCAQEAvPa2vveUglb1W4wiQgZkhKPrpjM7V/+vBgnOX6LTASGznbgHrInJl7zpI/R/WbPBVHiMplxrwXC27TXo/vuIrxwZ9sF7Ly7ZAwCESsk+/f/x4NwgVCs3LyMPtds70xqIUGUW8/r1pXIsRe+f0Noee8SunjqXIngsOiKMTRU8JT+hYmB7fBtTMms3LuRCyo1j+S+PhCRy6sCVTAsggZHlyDy40NNH3ZyqdC5rfXcRf3iIpL7hmMe4lXia+p5iKlwjFRGyXaCIqnm1CvkkvUXwbhNBhdD7IVUQnu3ELP0eGdCX6bxYVyawxi0bvX/wJUUP/uZJs0I62+YOsX0REPzz0QIDAQAB');
+    </script>
+  </body>
+</html>  
