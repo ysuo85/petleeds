@@ -19,6 +19,9 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.10.0/angular-material.js"></script>
 
 			<style type="text/css">
+			html {
+				background-color: #F6EBE0;
+			}
 				h5 {
 					position: relative;
 					left: 265px;
@@ -61,6 +64,7 @@
 					right: -120px;
 				}
 
+
 				.btn-primary {
 					background-color:#16a085;
 					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
@@ -100,7 +104,7 @@
 				}
 
 				footer {
-					position: absolute;
+					position: fixed;
 					bottom: 0px;
 					text-align: center;
 					width: 100%;
@@ -128,6 +132,15 @@
 				th {
 					max-height:100px;
 				}
+
+				.container {
+					height:100%;
+				}
+
+		 	 tr.row:before {
+			    display: table;
+			    content: initial !important;
+			}
 
 			</style>
 			<script>
@@ -174,7 +187,7 @@
 									success: function(data) {
 										console.log(data);
 										data.forEach(function(row){
-											input = input + "<tr><td>" + row.animal_name + "</td><td>" + row.species_id + "</td><td>" + row.breed_id + "</td><td>" + row.behavioral_trait_id + "</td><td>" + row.vaccination_id + "</td><td>" + row.health_trait_id + "</td></tr>";
+											input = input + "<tr class='rows'><td class='col-sm-2 col-md-2 col-lg-2'>" + row.animal_name + "</td><td class='col-sm-2 col-md-2 col-lg-2'>" + row.species_id + "</td><td class='col-sm-2 col-md-2 col-lg-2'>" + row.breed_id + "</td><td class='col-sm-2 col-md-2 col-lg-2'>" + row.behavioral_trait_id + "</td><td class='col-sm-2 col-md-2 col-lg-2'>" + row.vaccination_id + "</td><td class='col-sm-2 col-md-2 col-lg-2'>" + row.health_trait_id + "</td></tr>";
 										});
 										$('.animalRows').html(input);
 											input = "";
@@ -205,7 +218,13 @@
 											success: function(data) {
 												console.log(data);
 												data.forEach(function(row){
-													input = input + "<tr><td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_name + "</td>" + "<td class='col-sm-4 col-md-4 col-lg-4'>" + row.fundraising_campaign_description + "</td>" + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_goal + "</td>" + "</td>" + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_value + '<td class="col-sm-2 col-md-2 col-lg-2"><button class="btn btn-default">Edit</button></td></tr>';
+													input = input + "<tr class='row'>";
+													input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_name +"</td>";
+													input = input + "<td class='col-sm-4 col-md-4 col-lg-4'>" + row.fundraising_campaign_description + "</td>"; 
+													input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_goal + "</td>" 
+													input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_value + "</td>"
+													input = input + '<td class="col-sm-2 col-md-2 col-lg-2"><button class="btn btn-default">Edit</button></td>';
+													input = input + "</tr>"
 												})
 												$('.fundraisingRows').html(input);
 												input = "";
@@ -223,7 +242,13 @@
 						success: function(data) {
 							console.log(data);
 							data.forEach(function(row){
-								input = input + "<tr><td>" + row.fundraising_campaign_name + "</td>" + "<td><div class='overflow'>" + row.fundraising_campaign_description + "</div></td>" + "<td>" + row.fundraising_campaign_goal + "</td>" + "</td>" + "<td>" + row.fundraising_campaign_value + '<td"><button class="btn btn-default">Edit</button></td></tr>';
+								input = input + "<tr class='row'>";
+								input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_name +"</td>";
+								input = input + "<td class='col-sm-4 col-md-4 col-lg-4'>" + row.fundraising_campaign_description + "</td>"; 
+								input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_goal + "</td>" 
+								input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_value + "</td>"
+								input = input + '<td class="col-sm-2 col-md-2 col-lg-2"><button class="btn btn-default">Edit</button></td>';
+								input = input + "</tr>"
 							})
 							console.log(input);
 							$('.fundraisingRows').html(input);
@@ -245,72 +270,86 @@
 		</nav>
 
 		<div class="container">
-			<div class="col-xs-6">
-				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
-					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
-						<div class="col-xs-6">Fundraising Campaigns</div>
-						<div class="col-sm-2">
-								<button class="btn btn-primary start-new-campaign-button" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm" onclick="white()">
-							    	Start New Campaign
-							  </button>
-						</div>
-					</div>
-					<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
-						<div class="table-responsive">
-							<table class="table">
-								<thead  style="background-color:gray;">
-									<tr>
-										<th>Name</th>
-										<th>Description</th>
-										<th>Goal</th>
-										<th>Current Amount</th>
-										<th>Edit</th>
-									</th>
-								</thead>
-								<tbody style="overflow-y: scroll;">
-									<tr class="fundraisingRows">
+			<div>
 
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
 
-									</tr>
-								</tbody>
-							</table>
+			  </ul>
+
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="home">
+					<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
+						<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
+							<div class="col-xs-6">Fundraising Campaigns</div>
+							<div class="col-sm-2">
+									<button class="btn btn-primary start-new-campaign-button" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm" onclick="white()">
+								    	Start New Campaign
+								  </button>
+							</div>
+						</div>
+						<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
+							<div class="table-responsive">
+								<table class="table col-sm-12 col-ld-12 col-md-12">
+									<thead  style="background-color:gray;">
+										<tr>
+											<th class="col-sm-2 col-md-2 col-lg-2">Name</th>
+											<th class="col-sm-4 col-md-4 col-lg-4">Description</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Goal</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Current Amount</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Edit</th>
+										</th>
+									</thead>
+									<tbody class="fundraisingRows">
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-				</div>
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="profile">
+					<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
+						<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
+							<div class="col-xs-6 col-md-6 col-lg-6">Animals Up for Adoption</div>
+							<div class="col-sm-2 col-md-2 col-lg-2">
+									<button class="btn btn-primary secondButton" type="button" id="addNewAnimal" data-toggle="modal" data-target="#newAnimalForm">
+								    	Add New Animal
+								    </button>
+							</div>
+						</div>
+						<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
+							<div class="table-responsive">
+								<table class="table col-sm-12-col-md-12 col-lg-12">
+									<thead  style="background-color:gray;">
+										<tr>
+											<th class="col-sm-2 col-md-2 col-lg-2">Name</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Species</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Breed</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Behavioral Traits</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Vaccination Records</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Health Traits</th>
+										</th>
+									</thead>
+									<tbody  class="animalRows">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+			    </div>
 			</div>
-			<div class="col-xs-6 col-md-6 col-lg-6">
-				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
-					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
-						<div class="col-xs-6 col-md-6 col-lg-6">Animals Up for Adoption</div>
-						<div class="col-sm-2 col-md-2 col-lg-2">
-								<button class="btn btn-primary secondButton" type="button" id="addNewAnimal" data-toggle="modal" data-target="#newAnimalForm">
-							    	Add New Animal
-							    </button>
-						</div>
-					</div>
-					<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
-						<div class="table-responsive">
-							<table class="table">
-								<thead  style="background-color:gray;">
-									<tr>
-										<th>Name</th>
-										<th>Species</th>
-										<th>Breed</th>
-										<th>Behavioral Traits</th>
-										<th>Vaccination Records</th>
-										<th>Health Traits</th>
-									</th>
-								</thead>
-								<tbody>
-									<tr class="animalRows">
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		</div>			
+	</div>
+<!--
+
+-->
+<!--
+
+		
+		-->
 
 		<div id="newAnimalForm" class="modal fade" role="dialog">
 			<form id="animalForm" method="POST">
