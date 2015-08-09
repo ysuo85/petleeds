@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'fundraising/new'
+
   get 'sessions/new'
 
   #root :to => 'users#index'
