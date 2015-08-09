@@ -48,7 +48,50 @@
 				.container {
 					position: relative;
 					top: 150px;
-				}	
+				}
+
+				.save-button {
+					position: relative;
+					right: -94px;
+				}
+
+				.secondButton {
+					position: relative;
+					right: -120px;
+				}
+
+				.btn-primary {
+					background-color:#16a085; 
+					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
+				}
+
+				.btn-primary:hover {
+					background-color:#16a085; 
+					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
+				}
+
+				.start-new-campaign-button {
+					position: relative;
+					right: -94px;
+				}
+
+				body {
+					background-color: #F6EBE0;
+				}
+
+				footer {
+					position: absolute;
+					bottom: 0px;
+					text-align: center;
+					width: 100%;
+					background-color: #16a085;
+					font-family: helvetica;
+					font-weight: bold;
+					height: 40px;
+					font-size: 30px;
+					color: black;
+				}
+
 			</style>
 	</head>
 
@@ -64,11 +107,11 @@
 
 		<div class="container">
 			<div class="col-xs-6">
-				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:1px solid black;border-radius:2px;">
+				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
 					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
 						<div class="col-xs-6">Fundraising Campaigns</div>
 						<div class="col-sm-2">
-								<button class="btn btn-primary" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm">
+								<button class="btn btn-primary start-new-campaign-button" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm">
 							    	Start New Campaign
 							  </button>
 						</div>
@@ -90,7 +133,6 @@
 										<td>500</td>
 										<td>We need to raise money to sustain the shelter for the 2016-2017 year.</td>
 										<td><button class="btn btn-default">Edit</button></td>
-
 									</tr>
 								</tbody>
 							</table>
@@ -99,11 +141,11 @@
 				</div>
 			</div>
 			<div class="col-xs-6 col-md-6 col-lg-6">
-				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:1px solid black;border-radius:2px;">
+				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
 					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
 						<div class="col-xs-6 col-md-6 col-lg-6">Animals Up for Adoption</div>
 						<div class="col-sm-2 col-md-2 col-lg-2">
-								<button class="btn btn-primary" type="button" id="addNewAnimal" data-toggle="modal" data-target="#newAnimalForm">
+								<button class="btn btn-primary secondButton" type="button" id="addNewAnimal" data-toggle="modal" data-target="#newAnimalForm">
 							    	Add New Animal
 							    </button>
 						</div>
@@ -247,7 +289,10 @@
 
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	 	        <button type="button" class="btn btn-primary" id="saveNewAnimal" data-dismiss="modal">Add</button>
+	 	        <button type="button" class="btn btn-primary add-button {
+					background-color:#16a085; 
+					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
+				}" id="saveNewAnimal" data-dismiss="modal">Add</button>
 		      </div>
 	    </div>
 	  </div>
@@ -298,5 +343,7 @@
 		    </div>
 		  </div>
 		</div>
+
+		<footer>Made With <span class="glyphicon glyphicon-heart"></span>  @BattleHackNYC </footer>
 	</body>
 </html>
