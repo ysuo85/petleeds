@@ -146,39 +146,7 @@
 
 
 			</style>
-			<script>
-				$(document).ready(function() {
-					var input = "";
-					$.ajax({
-						url: "http://localhost:3000/animals/read",
-						dataType: "json",
-						type: "GET",
-						processData: false,
-						contentType: "application/json",
-						success: function(data) {
-							data.forEach(function(data){
-								input = input + '<div class="row"><div class="col-xs-4 square-one" style="height:300px;"><img src="assets/kitty-eyes.png" alt="..." class="img-rounded"><div class="row animal-info">';
-								input = input +	'<div>Name: '+data.animal_name+'</div>';
-								input = input + '<div>Shelter: '+data.shelter_name+'</div>';
-								input = input + '<div>Shelter Location: '+data.shelter_city + ", " + data.shelter_city + ", " + data.shelter_country +'</div></div></div>';
 
-
-								input = input + '<div class="col-xs-4 square-two" style="height:300px;"><div class="row animal-info">';
-								input = input + '<div>Species: '+data.species_name+'</div>';
-								input = input + '<div>Breed: '+data.breed_name+'</div>';
-								input = input + '<div>Behavioral Traits: '+data.behavioral_trait_description+'</div>';
-								input = input + '<div>Health Traits: '+data.health_trait_description+'</div>';
-								input = input + '<div>Vaccinations: '+ data.vaccination_description+'</div></div>';
-								input = input + '<div data-role="content"><button class="button1" style="background-color: transparent;bottom: 0px;">Adopt</button></div></div></div>';
-							});
-							$('.animalBoxes').html(input);
-							$('.button1').click(function(){
-								window.open('questionaire.html');
-							});
-						}
-					});
-				});
-			</script>
 			<script>
                 function initializePlaces() {
                   // Create the autocomplete object, restricting the search
@@ -214,11 +182,34 @@
 		<div class="container">
 			  		  <div class="row">
  						 <div class="col-xs-3">
-					     <div class="input-group">
-					     <input type="text" class="form-control " id="autocomplete" placeholder="Search for locations...">
-						      <span class="input-group-btn">
-						       		 <button class="btn btn-default" type="button">Search<span class="glyphicon glyphicon-search"></span></button>
-						      </span>
+					     <div class="input-group" id="questionaire">
+								 <form>
+								 <p>Do you currently own a pet?</p>
+									 <input type="radio" id="woof_radio" name="owner" value="yes">Yes
+									 <span id="woof" style="visibility:hidden;">Woof!</span>
+									 <br>
+										<input type="radio" name="owner" value="no">No
+									<p>Do you have any kid at home?</p>
+										<input type="radio" name="kids" value="yes">Yes
+										<br>
+										<input type="radio" id="meow_radio" name="kids" value="no">No
+										<span id="meow" style="visibility:hidden;">Meow!</span>
+									<p>Does your residence allow pets?</p>
+										<input type="radio" id="fox_radio" name="residence" value="yes">Yes
+										<span class="fox" style="visibility:hidden;">What does the fox say?!</span>
+										<br>
+										<input type="radio" name="residence" value="no">No
+										<script async="async" src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=test@test.com"
+   										data-button="donate"
+   										data-name="Doggies"
+   										data-quantity="1"
+   										data-amount="100"
+   										data-currency="USD"
+   										data-shipping="0"
+   										data-tax="0"
+   										data-env="sandbox"></script>
+									</form>
+
 
 					     </div><!-- /input-group -->
 			  		  </div><!-- /.col-xs-3 -->
@@ -234,8 +225,26 @@
 <footer layout="row" layout-align="center center">Made With  &nbsp &nbsp &nbsp  @BattleHackNYC </footer>
 
 		<footer layout="row" layout-align="center center">Made With  &nbsp &nbsp &nbsp  @BattleHackNYC </footer>
+		<script>
+			$(document).ready(function(){
+				$('#woof_radio :checked').live('change', function(){
+					$('#woof').style.visibility = "visible";
+		 		});
+				if($('#meow_radio :checked').live('change', function(){
+         //write your code
+				 $('#meow').style.visibility = "visible";
+			 });
+				if($('#fox_radio :checked').live('change', function(){
+         //write your code
+				 $('#fox').style.visibility = "visible";
+			 });
+			});
+		</script>
+
 
 		<script type="text/javascript">
+
+
 
 		$(document).ready(function animateHeart() {
 		    $('.heart').animate({
