@@ -19,6 +19,9 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.10.0/angular-material.js"></script>
 
 			<style type="text/css">
+			html {
+				background-color: #F6EBE0;
+			}
 				h5 {
 					position: relative;
 					left: 265px;
@@ -61,13 +64,14 @@
 					right: -120px;
 				}
 
+
 				.btn-primary {
+					background-color:#16a085;
+					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
 					background-image: -webkit-linear-gradient(top,#337ab7 0,#16a085 100%);
 				    background-image: -o-linear-gradient(top,#16a085 0,#16a085 100%);
 				    background-image: -webkit-gradient(linear,left top,left bottom,from(#16a085),to(#16a085));
 				    background-image: linear-gradient(to bottom,#16a085 0,#16a085 100%);
-
-
 				}
 
 				.primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
@@ -79,9 +83,11 @@
 						.btn-primary:active:hover {
 					    background-color: #16A085;
 					    border-color: #16A085;
-}
+                }
 
 				.btn-primary:hover {
+					background-color:#16a085;
+					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
 					background-image: -webkit-linear-gradient(top,#16a085 0,#16a085 100%);
 				    background-image: -o-linear-gradient(top,#16a085 0,#16a085 100%);
 				    background-image: -webkit-gradient(linear,left top,left bottom,from(#337ab7),to(#16a085));
@@ -102,7 +108,7 @@
 				}
 
 				footer {
-					position: absolute;
+					position: fixed;
 					bottom: 0px;
 					text-align: center;
 					width: 100%;
@@ -124,20 +130,113 @@
 					    width: 300px;
 					    height: 100px;
 					    margin-bottom: -20px;
-
-}
 				}
-  
+
 
 				th {
 					max-height:100px;
 				}
 
+				.container {
+					height:100%;
+				}
+
+		 	 tr.row:before {
+			    display: table;
+			    content: initial !important;
+			}
 
 			</style>
 			<script>
 				$(document).ready(function() {
 					var input = "";
+					$('#saveNewAnimal').button().click(function(){
+							var $inputs = $('#animalForm :input');
+							var values = {};
+							$inputs.each(function(){
+								values[this.name] = $(this).val();
+							});
+							//var input = "";
+							$.ajax({
+								url: "http://localhost:3000/animals/create",
+								type: "POST",
+								data: {animal_name: values["animal_name"], species_id: values["species"], breed_id: values["breed"], behavioral_trait_id: values["bt"],
+												health_trait_id: values["health"], vaccination_id: values["vac"]},
+								success: function(result) {
+									$('.animalRows').html(input);
+									$.ajax({
+										url: "http://localhost:3000/animals/read",
+										dataType: "json",
+										type: "GET",
+										processData: false,
+										contentType: "application/json",
+										success: function(data) {
+											console.log(data);
+											data.forEach(function(row){
+												input = input + "<tr><td>" + row.animal_name + "</td><td>" + row.species_id + "</td><td>" + row.breed_id + "</td><td>" + row.behavioral_trait_id + "</td><td>" + row.vaccination_id + "</td><td>" + row.health_trait_id + "</td></tr>";
+											});
+											$('.animalRows').html(input);
+											input = "";
+										}
+									});
+								}
+							});
+						});
+						$.ajax({
+									url: "http://localhost:3000/animals/read",
+									dataType: "json",
+									type: "GET",
+									processData: false,
+									contentType: "application/json",
+									success: function(data) {
+										console.log(data);
+										data.forEach(function(row){
+											input = input + "<tr class='rows'><td class='col-sm-2 col-md-2 col-lg-2'>" + row.animal_name + "</td><td class='col-sm-2 col-md-2 col-lg-2'>" + row.species_id + "</td><td class='col-sm-2 col-md-2 col-lg-2'>" + row.breed_id + "</td><td class='col-sm-2 col-md-2 col-lg-2'>" + row.behavioral_trait_id + "</td><td class='col-sm-2 col-md-2 col-lg-2'>" + row.vaccination_id + "</td><td class='col-sm-2 col-md-2 col-lg-2'>" + row.health_trait_id + "</td></tr>";
+										});
+										$('.animalRows').html(input);
+											input = "";
+									 }
+						});
+					$('#saveNewCampaign').button().click(function() {
+	            // get all the inputs into an array.
+	            var $inputs = $('#campaignForm :input');
+	            var values = {};
+	            $inputs.each(function() {
+	                values[this.name] = $(this).val();
+	            });
+							//var input = "";
+							$.ajax({
+								url: "http://localhost:3000/fundraising/create",
+								type: "POST",
+								data: {fundraising_campaign_name: values["CN"], fundraising_campaign_goal: values["CG"], fundraising_campaign_description: values["CD"]},
+								success: function(result) {
+								    //input = input + "<tr><td class='col-sm-2 col-md-2 col-lg-2'>" + values[0] + "</td>" + "<td class='col-sm-4 col-md-4 col-lg-4'>" + values[2] + "</td>" + "<td class='col-sm-2 col-md-2 col-lg-2'>" + values[1] + "</td>" + "</td>" + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_value + '<td class="col-sm-2 col-md-2 col-lg-2"><button class="btn btn-default">Edit</button></td></tr>';
+							      $('.fundraisingRows').html(input);
+										input = "";
+										$.ajax({
+											url: "http://localhost:3000/fundraising/read",
+											dataType: "json",
+											type: "GET",
+											processData: false,
+											contentType: "application/json",
+											success: function(data) {
+												console.log(data);
+												data.forEach(function(row){
+													input = input + "<tr class='row'>";
+													input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_name +"</td>";
+													input = input + "<td class='col-sm-4 col-md-4 col-lg-4'>" + row.fundraising_campaign_description + "</td>"; 
+													input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_goal + "</td>" 
+													input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_value + "</td>"
+													input = input + '<td class="col-sm-2 col-md-2 col-lg-2"><button class="btn btn-default">Edit</button></td>';
+													input = input + "</tr>"
+												})
+												$('.fundraisingRows').html(input);
+												input = "";
+											}
+										});
+								}
+							});
+					});
 					$.ajax({
 						url: "http://localhost:3000/fundraising/read",
 						dataType: "json",
@@ -147,9 +246,17 @@
 						success: function(data) {
 							console.log(data);
 							data.forEach(function(row){
-								input = input + "<tr><td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_name + "</td>" + "<td class='col-sm-4 col-md-4 col-lg-4'>" + row.fundraising_campaign_description + "</td>" + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_goal + "</td>" + "</td>" + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_value + '<td class="col-sm-2 col-md-2 col-lg-2"><button class="btn btn-default">Edit</button></td></tr>';
+								input = input + "<tr class='row'>";
+								input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_name +"</td>";
+								input = input + "<td class='col-sm-4 col-md-4 col-lg-4'>" + row.fundraising_campaign_description + "</td>"; 
+								input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_goal + "</td>" 
+								input = input + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_value + "</td>"
+								input = input + '<td class="col-sm-2 col-md-2 col-lg-2"><button class="btn btn-default">Edit</button></td>';
+								input = input + "</tr>"
 							})
+							console.log(input);
 							$('.fundraisingRows').html(input);
+							input = "";
 						}
 					});
 				});
@@ -160,119 +267,100 @@
 		<nav>
 			<ul>
 				 <a href="index.html" class="hvr-pop">home</a>
+<<<<<<< HEAD
 				 <a href="adopt.html" class="hvr-pop">adopt</a>
+=======
+				 <a href="adpot.html" class="hvr-pop">adopt</a>
+>>>>>>> d903cfc7697831fdd832b2363b4485657ab7b259
 				 <a href="locations.html" class="hvr-pop">find a campaign</a>
 				 <a href="home.html" class="hvr-pop">login</a>
 			</ul>
 		</nav>
 
 		<div class="container">
-			<div class="col-xs-6">
-				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
-					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
-						<div class="col-xs-6">Fundraising Campaigns</div>
-						<div class="col-sm-2">
-								<button class="btn btn-primary start-new-campaign-button" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm" onclick="white()">
-							    	Start New Campaign
-							  </button>
+			<div>
+
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+
+			  </ul>
+
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="home">
+					<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
+						<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
+							<div class="col-xs-6">Fundraising Campaigns</div>
+							<div class="col-sm-2">
+									<button class="btn btn-primary start-new-campaign-button" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm" onclick="white()">
+								    	Start New Campaign
+								  </button>
+							</div>
+						</div>
+						<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
+							<div class="table-responsive">
+								<table class="table col-sm-12 col-ld-12 col-md-12">
+									<thead  style="background-color:gray;">
+										<tr>
+											<th class="col-sm-2 col-md-2 col-lg-2">Name</th>
+											<th class="col-sm-4 col-md-4 col-lg-4">Description</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Goal</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Current Amount</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Edit</th>
+										</th>
+									</thead>
+									<tbody class="fundraisingRows">
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-					<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
-						<div class="table-responsive">
-							<table class="table">
-								<thead  style="background-color:gray;">
-									<tr>
-										<th class="col-sm-2 col-md-2 col-lg-2">Name</th>
-										<th class="col-sm-4 col-md-4 col-lg-4">Description</th>
-										<th class="col-sm-2 col-md-2 col-lg-2">Goal</th>
-										<th class="col-sm-2 col-md-2 col-lg-2">Current Amount</th>
-										<th class="col-sm-2 col-md-2 col-lg-2">Edit</th>
-									</th>
-								</thead>
-
-								<tbody>
-									<tr>
-										<td>10,000</td>
-										<td>500</td>
-										<td><div class="overflow">We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year.</div></td>
-										<td><button class="btn btn-default">Edit</button></td>
-
-								<tbody style="overflow-y: scroll;">
-									<tr class="fundraisingRows">
-
-
-									</tr>
-								</tbody>
-							</table>
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="profile">
+					<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
+						<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
+							<div class="col-xs-6 col-md-6 col-lg-6">Animals Up for Adoption</div>
+							<div class="col-sm-2 col-md-2 col-lg-2">
+									<button class="btn btn-primary secondButton" type="button" id="addNewAnimal" data-toggle="modal" data-target="#newAnimalForm">
+								    	Add New Animal
+								    </button>
+							</div>
+						</div>
+						<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
+							<div class="table-responsive">
+								<table class="table col-sm-12-col-md-12 col-lg-12">
+									<thead  style="background-color:gray;">
+										<tr>
+											<th class="col-sm-2 col-md-2 col-lg-2">Name</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Species</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Breed</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Behavioral Traits</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Vaccination Records</th>
+											<th class="col-sm-2 col-md-2 col-lg-2">Health Traits</th>
+										</th>
+									</thead>
+									<tbody  class="animalRows">
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-				</div>
+			    </div>
 			</div>
-			<div class="col-xs-6 col-md-6 col-lg-6">
-				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
-					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
-						<div class="col-xs-6 col-md-6 col-lg-6">Animals Up for Adoption</div>
-						<div class="col-sm-2 col-md-2 col-lg-2">
-								<button class="btn btn-primary secondButton" type="button" id="addNewAnimal" data-toggle="modal" data-target="#newAnimalForm">
-							    	Add New Animal
-							    </button>
-						</div>
-					</div>
-					<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
-						<div class="table-responsive">
-							<table class="table">
-								<thead  style="background-color:gray;">
-									<tr>
-										<th>Name</th>
-										<th>Species</th>
-										<th>Breed</th>
-										<th>Behavioral Traits</th>
-										<th>Vaccination Records</th>
-										<th>Health Traits</th>
-									</th>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Doge</td>
-										<td>Dog</td>
-										<td>Labrador</td>
-										<td>A</td>
-										<td>B</td>
-										<td>C</td>
-									</tr>
-									<tr>
-										<td>Doge</td>
-										<td>Dog</td>
-										<td>Labrador</td>
-										<td>A</td>
-										<td>B</td>
-										<td>C</td>
-									</tr>
-									<tr>
-										<td>Doge</td>
-										<td>Dog</td>
-										<td>Labrador</td>
-										<td>A</td>
-										<td>B</td>
-										<td>C</td>
-									</tr>
-									<tr>
-										<td>Doge</td>
-										<td>Dog</td>
-										<td>Labrador</td>
-										<td>A</td>
-										<td>B</td>
-										<td>C</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		</div>			
+	</div>
+<!--
+
+-->
+<!--
+
+		
+		-->
 
 		<div id="newAnimalForm" class="modal fade" role="dialog">
+			<form id="animalForm" method="POST">
 		  <div class="modal-dialog">
 
 		    <!-- Modal content-->
@@ -286,7 +374,7 @@
 
 				<div class="row">
 					<div class="col-lg-6">
-						<select class="form-control">
+						<select class="form-control" name="species">
 					      	<option>Cat</option>
 					      	<option>Dog</option>
 					      	<option>Kangaroo</option>
@@ -298,7 +386,7 @@
 				<h5>Breed</h5>
 				<div class="row">
 					<div class="col-lg-6">
-						<select class="form-control">
+						<select class="form-control" name="breed">
 					      	<option>Yorki</option>
 					      	<option>German Shephard</option>
 					      	<option>Bull Dog</option>
@@ -310,19 +398,19 @@
 				<h5>Behavioral Traits</h5>
 				<div class="row">
 					<div class="col-lg-6">
-						<select class="form-control">
+						<select class="form-control" name="bt">
 					      	<option>obedient</option>
 					      	<option>Silent</option>
 					      	<option>Aggresive</option>
 					      	<option>Loud</option>
 		      			</select>
-					</div>
 				</div>
 				<hr>
 				<h5>Health</h5>
 				<div class="row">
+					</div>
 					<div class="col-lg-6">
-						<select class="form-control">
+						<select class="form-control" name="health">
 					      	<option>A+</option>
 					      	<option>A-</option>
 					      	<option>B+</option>
@@ -334,7 +422,7 @@
 				<h5>Vaccination</h5>
 				<div class="row">
 					<div class="col-lg-6">
-						<select class="form-control">
+						<select class="form-control" name="vac">
 					      	<option>distemper</option>
 					      	<option>parvovirus</option>
 					      	<option>hepatitis</option>
@@ -346,7 +434,7 @@
 				<h5>Animal Name</h5>
 				<div class="row">
 					<div class="col-lg-6">
-						<select class="form-control">
+						<select class="form-control" name="animal_name">
 					      	<option>Lucy</option>
 					      	<option>Kitty</option>
 					      	<option>Laci</option>
@@ -358,15 +446,17 @@
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	 	        <button type="button" class="btn btn-primary add-button {
-					background-color:#16a085; 
+					background-color:#16a085;
 					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
-				}" id="saveNewAnimal" data-dismiss="modal">Add</button>
+				}" id="saveNewAnimal" data-toggle="modal" data-target="#newAnimalForm">Add</button>
 		      </div>
 	    </div>
+		</form>
 	  </div>
 	</div>
 
 		<div id="newCampaignForm" class="modal fade" role="dialog">
+			<form id="campaignForm" method="POST">
 		  <div class="modal-dialog">
 		    <!-- Modal content-->
 		    <div class="modal-content">
@@ -379,7 +469,7 @@
 			        <div class="col-lg-6">
 		                <div class="form-group">
 		                    <label>Campaign Name</label>
-		                    <input placeholder="Enter campaign Name here" class="form-control">
+		                    <input name="CN" type="text" placeholder="Enter campaign Name here" class="form-control">
 
 		                </div>
 		            </div>
@@ -389,7 +479,7 @@
 		        	<div class="col-lg-6">
 	                    <div class="form-group">
 	                        <label>Campaign Goal</label>
-	                        <input placeholder="Enter campaign goal here " class="form-control">
+	                        <input name="CG" type="number" placeholder="Enter campaign goal here " class="form-control">
 
 	                    </div>
 	                </div>
@@ -399,24 +489,19 @@
 			        <div class="col-lg-6">
 	                    <div class="form-group">
 	                        <label>Campaign Description</label>
-	                        <input placeholder="Enter campaign description here" class="form-control">
+	                        <input name="CD" type="text" placeholder="Enter campaign description here" class="form-control">
 	                    </div>
 	                </div>
 	    		</div>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-		        <button type="button" class="btn btn-primary" id="saveNewCampaign" data-dismiss="modal">Save</button>
+		        <button type="button" class="btn btn-primary" id="saveNewCampaign" data-toggle="modal" data-target="#newCampaignForm">Save</button>
 		      </div>
 		    </div>
 		  </div>
+		</form>
 		</div>
-
-		<script type="text/javascript">
-
-				
-
-</script>
 
 		<footer>Made With <span class="glyphicon glyphicon-heart"></span>@BattleHackNYC </footer>
 	</body>
