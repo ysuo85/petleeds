@@ -50,6 +50,7 @@
 					top: 150px;
 				}
 
+
 				.save-button {
 					position: relative;
 					right: -94px;
@@ -61,13 +62,40 @@
 				}
 
 				.btn-primary {
+<<<<<<< HEAD
 					background-color:#16a085;
 					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
+=======
+					background-image: -webkit-linear-gradient(top,#337ab7 0,#16a085 100%);
+				    background-image: -o-linear-gradient(top,#16a085 0,#16a085 100%);
+				    background-image: -webkit-gradient(linear,left top,left bottom,from(#16a085),to(#16a085));
+				    background-image: linear-gradient(to bottom,#16a085 0,#16a085 100%);
+
+
+>>>>>>> 64d5e36009d7ba184538e295b8a168d1e5057ad0
 				}
 
+				.primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+						    color: #fff;
+						    background-color: #16A085;
+						    border-color: #122b40;
+						}
+
+						.btn-primary:active:hover {
+					    background-color: #16A085;
+					    border-color: #16A085;
+}
+
 				.btn-primary:hover {
+<<<<<<< HEAD
 					background-color:#16a085;
 					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
+=======
+					background-image: -webkit-linear-gradient(top,#16a085 0,#16a085 100%);
+				    background-image: -o-linear-gradient(top,#16a085 0,#16a085 100%);
+				    background-image: -webkit-gradient(linear,left top,left bottom,from(#337ab7),to(#16a085));
+				    background-image: linear-gradient(to bottom,#16a085 0,#16a085 100%);
+>>>>>>> 64d5e36009d7ba184538e295b8a168d1e5057ad0
 				}
 
 				.start-new-campaign-button {
@@ -92,9 +120,25 @@
 					color: black;
 				}
 
+
+				.overflow {
+					    overflow: scroll;
+					    border: solid 1px black;
+					    background: transparent;
+					    color: black;
+					   	padding: 0px;
+					    width: 300px;
+					    height: 100px;
+					    margin-bottom: -20px;
+
+}
+				}
+  
+
 				th {
 					max-height:100px;
 				}
+
 
 			</style>
 			<script>
@@ -192,8 +236,9 @@
 						success: function(data) {
 							console.log(data);
 							data.forEach(function(row){
-								input = input + "<tr><td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_name + "</td>" + "<td class='col-sm-4 col-md-4 col-lg-4'>" + row.fundraising_campaign_description + "</td>" + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_goal + "</td>" + "</td>" + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_value + '<td class="col-sm-2 col-md-2 col-lg-2"><button class="btn btn-default">Edit</button></td></tr>';
+								input = input + "<tr><td>" + row.fundraising_campaign_name + "</td>" + "<td><div class='overflow'>" + row.fundraising_campaign_description + "</div></td>" + "<td>" + row.fundraising_campaign_goal + "</td>" + "</td>" + "<td>" + row.fundraising_campaign_value + '<td"><button class="btn btn-default">Edit</button></td></tr>';
 							})
+							console.log(input);
 							$('.fundraisingRows').html(input);
 							input = "";
 						}
@@ -206,7 +251,7 @@
 		<nav>
 			<ul>
 				 <a href="index.html" class="hvr-pop">home</a>
-				 <a href="locations.html" class="hvr-pop">adopt</a>
+				 <a href="adpot.html" class="hvr-pop">adopt</a>
 				 <a href="locations.html" class="hvr-pop">find a campaign</a>
 				 <a href="home.html" class="hvr-pop">login</a>
 			</ul>
@@ -218,7 +263,7 @@
 					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
 						<div class="col-xs-6">Fundraising Campaigns</div>
 						<div class="col-sm-2">
-								<button class="btn btn-primary start-new-campaign-button" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm">
+								<button class="btn btn-primary start-new-campaign-button" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm" onclick="white()">
 							    	Start New Campaign
 							  </button>
 						</div>
@@ -228,15 +273,16 @@
 							<table class="table">
 								<thead  style="background-color:gray;">
 									<tr>
-										<th class="col-sm-2 col-md-2 col-lg-2">Name</th>
-										<th class="col-sm-4 col-md-4 col-lg-4">Description</th>
-										<th class="col-sm-2 col-md-2 col-lg-2">Goal</th>
-										<th class="col-sm-2 col-md-2 col-lg-2">Current Amount</th>
-										<th class="col-sm-2 col-md-2 col-lg-2">Edit</th>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Goal</th>
+										<th>Current Amount</th>
+										<th>Edit</th>
 									</th>
 								</thead>
 								<tbody style="overflow-y: scroll;">
 									<tr class="fundraisingRows">
+
 
 									</tr>
 								</tbody>
@@ -423,6 +469,12 @@
 		</form>
 		</div>
 
-		<footer>Made With <span class="glyphicon glyphicon-heart"></span>  @BattleHackNYC </footer>
+		<script type="text/javascript">
+
+				
+
+</script>
+
+		<footer>Made With <span class="glyphicon glyphicon-heart"></span>@BattleHackNYC </footer>
 	</body>
 </html>

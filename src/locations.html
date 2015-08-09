@@ -7,6 +7,8 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
 		<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<script type="text/javascript" src="https://js.braintreegateway.com/v1/braintree.js">
+    </script>
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -24,7 +26,6 @@
 				position: absolute;
 				top: 150px;
 				left: 230px;
-				background-color: purple;
 				width: 800px;
 				border-radius: 5px;
 
@@ -55,10 +56,38 @@
 			}
 			
 
-
+			td {
+				margin: 5px !important;
+			}
 
 	</style>
 
+	<script>
+		$(document).ready(function() {
+			var input = "";
+			$.ajax({
+				url: "http://localhost:3000/fundraising/read",
+				dataType: "json",
+				type: "GET",
+				processData: false,
+				contentType: "application/json",
+				success: function(data) {
+					console.log(data);
+					data.forEach(function(row){
+						input = input + "<tr><td>" + row.fundraising_campaign_name + "</td>" + "<td><div class='overflow'>" + row.fundraising_campaign_description + "</div></td>" + "<td>" + row.fundraising_campaign_goal + "</td>" + "</td>" + "<td class='col-md-1 col-lg-1 col-sm-1'>" + row.fundraising_campaign_value + '</td><td><button class="btn btn-default" onclick="sponsorNow('+row.fundraising_campaign_id+')">Sponsor</button></td></tr>';
+					})
+					console.log(input);
+					$('.fundraisingRows').html(input);
+				}
+			});
+		});
+	</script>
+	<script>
+		function sponsorNow(id){
+
+
+		}
+	</script>
 </head>
 
 <body>
@@ -73,21 +102,21 @@
 		</nav>
 		
 			<div class="container">
-			  		  <div class="row">
- 						 <div class="col-xs-3">
-					     <div class="input-group">
-					     <input type="text" class="form-control " placeholder="Search for locations...">
-						      <span class="input-group-btn">
-						       		 <button class="btn btn-default" type="button">Search<span class="glyphicon glyphicon-search"></span></button>
-						      </span>
-					     </div><!-- /input-group -->
-			  		  </div><!-- /.col-xs-3 -->
-					</div>
 
-					<div class="row">
-					  <div class="col-xs-4"><img src="..." alt="..." class="img-rounded"></div>
-					  <div class="col-xs-4"><img src="..." alt="..." class="img-rounded"></div>
-					</div>	
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Goal</th>
+								<th>Current Amount</th>
+								<th>Sponsor</th>
+							</th>
+						</thead>
+						<tbody class="fundraisingRows">
+
+						</tbody>	
+					</table>	
 			</div>
 </body>
 </html>

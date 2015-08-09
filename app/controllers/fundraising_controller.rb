@@ -5,6 +5,7 @@ class FundraisingController < ApplicationController
     FundraisingCampaign.create(
       :fundraising_campaign_name => params[:fundraising_campaign_name],
       :fundraising_campaign_goal => params[:fundraising_campaign_goal],
+      :fundraising_campaign_value => 0,
       :fundraising_campaign_description => params[:fundraising_campaign_description]
     )
 
@@ -15,7 +16,7 @@ class FundraisingController < ApplicationController
     #fund = Fundraising.find(:all)
     funds = FundraisingCampaign.find_by_sql("SELECT * FROM fundraising_campaigns")
 
-    render :json => funds, :except => [:id]
+    render :json => funds
   end
 
   def update
