@@ -20,6 +20,9 @@ Rails.application.routes.draw do
    match 'behavioral_traits/create' => 'behavioral_traits#create', :via => :post
    match 'behavioral_traits/read' => 'behavioral_traits#read', :via => :get
 
+   match 'health_traits/create' => 'health_traits#create', :via => :post
+   match 'health_traits/read' => 'health_traits#read', :via => :get
+
    match 'vaccinations/create' => 'vaccinations#create', :via => :post
    match 'vaccinations/read' => 'vaccinations#read', :via => :get
 end
