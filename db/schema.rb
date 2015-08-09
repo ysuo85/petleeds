@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "breed_name", limit: 20
   end
 
+  create_table "fundraising_campaigns", primary_key: "fundraising_campaign_id", force: :cascade do |t|
+    t.integer "fundraising_campaign_goal",        limit: 4
+    t.integer "fundraising_campaign_value",       limit: 4
+    t.text    "fundraising_campaign_description", limit: 4294967295
+  end
+
   create_table "shelters", primary_key: "shelter_id", force: :cascade do |t|
     t.string  "shelter_instagram_link", limit: 255
     t.string  "shelter_facebook_link",  limit: 255
@@ -56,6 +62,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "user_first_name",  limit: 45
     t.string  "user_last_name",   limit: 45
     t.string  "user_name",        limit: 45
+    t.string  "user_email",       limit: 45
+    t.binary  "user_password",    limit: 16777215
   end
 
   create_table "vaccinations", primary_key: "vaccination_id", force: :cascade do |t|
