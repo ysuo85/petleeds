@@ -49,7 +49,7 @@
 					position: relative;
 					top: 150px;
 				}
-<<<<<<< HEAD
+
 
 				.save-button {
 					position: relative;
@@ -62,13 +62,30 @@
 				}
 
 				.btn-primary {
-					background-color:#16a085; 
-					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
+					background-image: -webkit-linear-gradient(top,#337ab7 0,#16a085 100%);
+				    background-image: -o-linear-gradient(top,#16a085 0,#16a085 100%);
+				    background-image: -webkit-gradient(linear,left top,left bottom,from(#16a085),to(#16a085));
+				    background-image: linear-gradient(to bottom,#16a085 0,#16a085 100%);
+
+
 				}
 
+				.primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+						    color: #fff;
+						    background-color: #16A085;
+						    border-color: #122b40;
+						}
+
+						.btn-primary:active:hover {
+					    background-color: #16A085;
+					    border-color: #16A085;
+}
+
 				.btn-primary:hover {
-					background-color:#16a085; 
-					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
+					background-image: -webkit-linear-gradient(top,#16a085 0,#16a085 100%);
+				    background-image: -o-linear-gradient(top,#16a085 0,#16a085 100%);
+				    background-image: -webkit-gradient(linear,left top,left bottom,from(#337ab7),to(#16a085));
+				    background-image: linear-gradient(to bottom,#16a085 0,#16a085 100%);
 				}
 
 				.start-new-campaign-button {
@@ -93,8 +110,19 @@
 					color: black;
 				}
 
-=======
->>>>>>> cdf24e0afdbc82cba77b8965e7c2ad4c609929ba
+				.overflow {
+					    overflow: scroll;
+					    border: solid 1px black;
+					    background: transparent;
+					    color: black;
+					   	padding: 0px;
+					    width: 300px;
+					    height: 100px;
+					    margin-bottom: -20px;
+
+}
+				}
+  
 			</style>
 	</head>
 
@@ -114,7 +142,7 @@
 					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
 						<div class="col-xs-6">Fundraising Campaigns</div>
 						<div class="col-sm-2">
-								<button class="btn btn-primary start-new-campaign-button" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm">
+								<button class="btn btn-primary start-new-campaign-button" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm" onclick="white()">
 							    	Start New Campaign
 							  </button>
 						</div>
@@ -134,7 +162,7 @@
 									<tr>
 										<td>10,000</td>
 										<td>500</td>
-										<td>We need to raise money to sustain the shelter for the 2016-2017 year.</td>
+										<td><div class="overflow">We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year.</div></td>
 										<td><button class="btn btn-default">Edit</button></td>
 									</tr>
 								</tbody>
@@ -347,6 +375,12 @@
 		  </div>
 		</div>
 
-		<footer>Made With <span class="glyphicon glyphicon-heart"></span>  @BattleHackNYC </footer>
+		<script type="text/javascript">
+
+				
+
+</script>
+
+		<footer>Made With <span class="glyphicon glyphicon-heart"></span>@BattleHackNYC </footer>
 	</body>
 </html>
