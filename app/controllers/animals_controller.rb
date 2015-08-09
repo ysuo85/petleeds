@@ -16,20 +16,24 @@ class AnimalsController < ApplicationController
         :vaccination_description => params[:vaccination_description],
         :animal_name => params[:animal_name]   
     	)
-
-
       render :status => 200, :json => { :success => true, :info => "Load Successful"}
 	end
 
   def read
-      animals = Animal.find_by_sql("SELECT * FROM animals")
+      animals = Animal.find_by_sql("SELECT * FROM animals a INNER JOIN shelters s ON s.shelter_id = a.shelter_id")
+      render :json => animals
+      ####TRUE CRUD BELOW
+      #animals = Animal.find_by_sql("SELECT * FROM animals")
 
-      render :json => animals, :except => [:id]
+      #render :json => animals
   end
+
+
+###NOT CRUD
   def readUserFriendly
-      animals = Animal.find_by_sql("SELECT * FROM animals")
+#      animals = Animal.find_by_sql("SELECT * FROM animals")
 #conduct joins
-      render :json => animals, :except => [:id]
+#      render :json => animals, :except => [:id]
   end
 
 end

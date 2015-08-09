@@ -7,7 +7,8 @@
 
 			<!-- Optional theme -->
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
+    		
+    		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBUfjp7LjORLaKtxINeesXThIfCXNxfl1A&libraries=places,visualization"></script>
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -101,11 +102,11 @@
 				}
 
 				.square-one {
-					border-top-left-radius: 10px;
+					border-top-left-radius: 0px;
 				}
 
 				.square-two {
-					border-top-right-radius: 10px;
+					border-top-right-radius: 0px;
 				}
 
 				img {
@@ -156,25 +157,43 @@
 						contentType: "application/json",
 						success: function(data) {
 							data.forEach(function(data){
-								input = "<tr>";
-								input = input + "<td>";
-								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Name: " + data.animal_name + "</div>";
-								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Behavioral Trait: " + data.behavioral_trait_description + "</div>";
-								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Breed: " + data.breed_name + "</div>";
-								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Health Traits: " + data.health_trait_description + "</div>";
-								input = input + "</td>";
-								
-								input = input + "<td>";
-								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Shelter: " + data.shelter_name + "</div>";
-								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Species: " + data.species_name + "</div>";
-								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Vaccinations: " + data.vaccination_description + "</div>";
-								input = input + "</td>";
-								input = input + "</tr>";
+								input = input + '<div class="row"><div class="col-xs-4 square-one" style="height:300px;"><img src="assets/kitty-eyes.png" alt="..." class="img-rounded"><div class="row animal-info">';
+								input = input +	'<div>Name: '+data.animal_name+'</div>';
+								input = input + '<div>Shelter: '+data.shelter_name+'</div>';
+								input = input + '<div>Shelter Location: '+data.shelter_city + ", " + data.shelter_city + ", " + data.shelter_country +'</div></div></div>';
+
+
+								input = input + '<div class="col-xs-4 square-two" style="height:300px;"><div class="row animal-info">';
+								input = input + '<div>Species: '+data.species_name+'</div>';
+								input = input + '<div>Breed: '+data.breed_name+'</div>';								
+								input = input + '<div>Behavioral Traits: '+data.behavioral_trait_description+'</div>';
+								input = input + '<div>Health Traits: '+data.health_trait_description+'</div>';
+								input = input + '<div>Vaccinations: '+ data.vaccination_description+'</div></div></div></div>';
 							});
-							$('.animalRows').html(input);
+							$('.animalBoxes').html(input);
 						}
 					});
 				});
+			</script>
+			<script>
+                function initializePlaces() {
+                  // Create the autocomplete object, restricting the search
+                  // to geographical location types.
+                  autocomplete = new google.maps.places.SearchBox(document.getElementById('autocomplete'));
+
+
+                  // When the user selects an address from the dropdown,
+                  // populate the address fields in the form.
+                  google.maps.event.addListener(autocomplete, 'places_changed', function() {
+
+                    var places = autocomplete.getPlaces();
+                    console.log("NEW STUFF HAPPENED");
+                  });
+                }
+
+                $(document).ready(function(){
+                	initializePlaces();
+                });
 			</script>
 	</head>
 
@@ -192,7 +211,7 @@
 			  		  <div class="row">
  						 <div class="col-xs-3">
 					     <div class="input-group">
-					     <input type="text" class="form-control " placeholder="Search for locations...">
+					     <input type="text" class="form-control " id="autocomplete" placeholder="Search for locations...">
 						      <span class="input-group-btn">
 						       		 <button class="btn btn-default" type="button">Search<span class="glyphicon glyphicon-search"></span></button>
 						      </span>
@@ -200,42 +219,9 @@
 					     </div><!-- /input-group -->
 			  		  </div><!-- /.col-xs-3 -->
 					</div>
+					<div class="animalBoxes" style="margin-bottom:100px;">
+					</div>
 
-					<div class="row">
-					  <div class="col-xs-4 square-one"><img src="assets/kitty-eyes.png" alt="..." class="img-rounded">
-						<div class="row animal-info">
-							<div>Name: </div>
-							<div>Shelter: </div>
-							<div>Shelter Location: </div>
-						</div>
-					  </div>
-
-					  <div class="col-xs-4 square-two">
-					  	<div>
-					  		<ul>Breed:
-					  			<li>a</li>
-					  			<li>b</li>
-					  			<li>c</li>
-					  		</ul>
-					  	</div>
-
-					  	<div>
-					  		<ul>Behavior:
-					  			<li class="active">a</li>
-					  			<li>b</li>
-					  			<li class="active">c</li>
-					  		</ul>
-					  	</div>
-
-					  	<div>
-					  		<ul class="active">Health:
-					  			<li>a</li>
-					  			<li>b</li>
-					  			<li>c</li>
-					  		</ul>
-					  	</div>
-					  </div>
-					</div>	
 			</div>
 
 
