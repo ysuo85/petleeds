@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "fundraising_campaign_goal",        limit: 4
     t.integer "fundraising_campaign_value",       limit: 4
     t.text    "fundraising_campaign_description", limit: 4294967295
+    t.string  "fundraising_campaign_name",        limit: 255
   end
 
   create_table "shelters", primary_key: "shelter_id", force: :cascade do |t|
@@ -67,7 +68,7 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "vaccinations", primary_key: "vaccination_id", force: :cascade do |t|
-    t.string "vaccination_name", limit: 20
+    t.string "vaccination_name", limit: 50
   end
 
   add_foreign_key "animals", "shelters", primary_key: "shelter_id", name: "animals_ibfk_2"

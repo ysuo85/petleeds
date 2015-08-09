@@ -7,6 +7,7 @@ class SheltersController < ApplicationController
       		#:shelter_instagram_link => params[:user][:organization_name],
                   :shelter_street_address => params[:shelter_street_address],
                   :shelter_city => params[:shelter_city],
+                  :shelter_state => params[:shelter_state],
       		:shelter_country => params[:shelter_country],
       		:shelter_postal_code =>  params[:shelter_postal_code],
                   :shelter_latitude => params[:shelter_latitude],
@@ -20,6 +21,8 @@ class SheltersController < ApplicationController
 
 	def read
 
-		#@shelters = Shelter.find_by_sql()
+		shelters = Shelter.find_by_sql("SELECT * FROM shelters")
+
+            render :json => shelters, :except => [:id]
 	end
 end
