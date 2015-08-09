@@ -27,7 +27,7 @@ class AnimalsController < ApplicationController
       render :json => animals, :except => [:id]
   end
   def readUserFriendly
-      animals = Animal.find_by_sql("SELECT shelter_name FROM animals a INNER JOIN shelters s ON s.shelter_id = a.shelter_id ON")
+      animals = Animal.find_by_sql("SELECT * FROM animals")
 #conduct joins
       render :json => animals, :except => [:id]
   end

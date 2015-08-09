@@ -50,7 +50,6 @@
 					top: 150px;
 				}
 
-
 				.save-button {
 					position: relative;
 					right: -94px;
@@ -62,30 +61,13 @@
 				}
 
 				.btn-primary {
-					background-image: -webkit-linear-gradient(top,#337ab7 0,#16a085 100%);
-				    background-image: -o-linear-gradient(top,#16a085 0,#16a085 100%);
-				    background-image: -webkit-gradient(linear,left top,left bottom,from(#16a085),to(#16a085));
-				    background-image: linear-gradient(to bottom,#16a085 0,#16a085 100%);
-
-
+					background-color:#16a085; 
+					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
 				}
 
-				.primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
-						    color: #fff;
-						    background-color: #16A085;
-						    border-color: #122b40;
-						}
-
-						.btn-primary:active:hover {
-					    background-color: #16A085;
-					    border-color: #16A085;
-}
-
 				.btn-primary:hover {
-					background-image: -webkit-linear-gradient(top,#16a085 0,#16a085 100%);
-				    background-image: -o-linear-gradient(top,#16a085 0,#16a085 100%);
-				    background-image: -webkit-gradient(linear,left top,left bottom,from(#337ab7),to(#16a085));
-				    background-image: linear-gradient(to bottom,#16a085 0,#16a085 100%);
+					background-color:#16a085; 
+					background-image: linear-gradient(to bottom,#16A085 0,#16A085 100%);
 				}
 
 				.start-new-campaign-button {
@@ -98,7 +80,7 @@
 				}
 
 				footer {
-					position: absolute;
+					position: fixed;
 					bottom: 0px;
 					text-align: center;
 					width: 100%;
@@ -110,42 +92,38 @@
 					color: black;
 				}
 
-
-				.overflow {
-					    overflow: scroll;
-					    border: solid 1px black;
-					    background: transparent;
-					    color: black;
-					   	padding: 0px;
-					    width: 300px;
-					    height: 100px;
-					    margin-bottom: -20px;
-
-}
-				}
-  
-
 				th {
 					max-height:100px;
 				}
-
 
 			</style>
 			<script>
 				$(document).ready(function() {
 					var input = "";
 					$.ajax({
-						url: "http://localhost:3000/fundraising/read",
+						url: "http://localhost:3000/animals/read",
 						dataType: "json",
 						type: "GET",
 						processData: false,
 						contentType: "application/json",
 						success: function(data) {
-							console.log(data);
-							data.forEach(function(row){
-								input = input + "<tr><td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_name + "</td>" + "<td class='col-sm-4 col-md-4 col-lg-4'>" + row.fundraising_campaign_description + "</td>" + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_goal + "</td>" + "</td>" + "<td class='col-sm-2 col-md-2 col-lg-2'>" + row.fundraising_campaign_value + '<td class="col-sm-2 col-md-2 col-lg-2"><button class="btn btn-default">Edit</button></td></tr>';
-							})
-							$('.fundraisingRows').html(input);
+							data.forEach(function(data){
+								input = "<tr>";
+								input = input + "<td>";
+								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Name: " + data.animal_name + "</div>";
+								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Behavioral Trait: " + data.behavioral_trait_description + "</div>";
+								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Breed: " + data.breed_name + "</div>";
+								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Health Traits: " + data.health_trait_description + "</div>";
+								input = input + "</td>";
+								
+								input = input + "<td>";
+								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Shelter: " + data.shelter_name + "</div>";
+								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Species: " + data.species_name + "</div>";
+								input = input + "<div class='col-sm-12 col-md-12 col-lg-12'>Vaccinations: " + data.vaccination_description + "</div>";
+								input = input + "</td>";
+								input = input + "</tr>";
+							});
+							$('.animalRows').html(input);
 						}
 					});
 				});
@@ -156,46 +134,33 @@
 		<nav>
 			<ul>
 				 <a href="index.html" class="hvr-pop">home</a>
-				 <a href="locations.html" class="hvr-pop">adopt</a>
+				 <a href="adopt.html" class="hvr-pop">adopt</a>
 				 <a href="locations.html" class="hvr-pop">find a campaign</a>
 				 <a href="home.html" class="hvr-pop">login</a>
 			</ul>
 		</nav>
 
 		<div class="container">
-			<div class="col-xs-6">
+			<div class="col-sm-12 col-md-12 col-lg-12">
 				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
 					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
-						<div class="col-xs-6">Fundraising Campaigns</div>
-						<div class="col-sm-2">
-								<button class="btn btn-primary start-new-campaign-button" type="button" id="addNewCampaign" data-toggle="modal" data-target="#newCampaignForm" onclick="white()">
-							    	Start New Campaign
-							  </button>
+						<div class="col-sm-4">
+							<div class="form-group input-group">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                    	<i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
 						</div>
 					</div>
 					<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
 						<div class="table-responsive">
 							<table class="table">
-								<thead  style="background-color:gray;">
-									<tr>
-										<th class="col-sm-2 col-md-2 col-lg-2">Name</th>
-										<th class="col-sm-4 col-md-4 col-lg-4">Description</th>
-										<th class="col-sm-2 col-md-2 col-lg-2">Goal</th>
-										<th class="col-sm-2 col-md-2 col-lg-2">Current Amount</th>
-										<th class="col-sm-2 col-md-2 col-lg-2">Edit</th>
-									</th>
-								</thead>
-
-								<tbody>
-									<tr>
-										<td>10,000</td>
-										<td>500</td>
-										<td><div class="overflow">We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year. We need to raise money to sustain the shelter for the 2016-2017 year.</div></td>
-										<td><button class="btn btn-default">Edit</button></td>
 
 								<tbody style="overflow-y: scroll;">
-									<tr class="fundraisingRows">
-
+									<tr class="animalRows">
 
 									</tr>
 								</tbody>
@@ -204,68 +169,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-xs-6 col-md-6 col-lg-6">
-				<div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;border:3px solid #27ae60;border-radius:2px;">
-					<div class="col-sm-12 col-md-12 col-lg-12" style="height:50px;" layout="row" layout-align="start center">
-						<div class="col-xs-6 col-md-6 col-lg-6">Animals Up for Adoption</div>
-						<div class="col-sm-2 col-md-2 col-lg-2">
-								<button class="btn btn-primary secondButton" type="button" id="addNewAnimal" data-toggle="modal" data-target="#newAnimalForm">
-							    	Add New Animal
-							    </button>
-						</div>
-					</div>
-					<div class="col-sm-12-col-md-12 col-lg-12" style="padding:0px;">
-						<div class="table-responsive">
-							<table class="table">
-								<thead  style="background-color:gray;">
-									<tr>
-										<th>Name</th>
-										<th>Species</th>
-										<th>Breed</th>
-										<th>Behavioral Traits</th>
-										<th>Vaccination Records</th>
-										<th>Health Traits</th>
-									</th>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Doge</td>
-										<td>Dog</td>
-										<td>Labrador</td>
-										<td>A</td>
-										<td>B</td>
-										<td>C</td>
-									</tr>
-									<tr>
-										<td>Doge</td>
-										<td>Dog</td>
-										<td>Labrador</td>
-										<td>A</td>
-										<td>B</td>
-										<td>C</td>
-									</tr>
-									<tr>
-										<td>Doge</td>
-										<td>Dog</td>
-										<td>Labrador</td>
-										<td>A</td>
-										<td>B</td>
-										<td>C</td>
-									</tr>
-									<tr>
-										<td>Doge</td>
-										<td>Dog</td>
-										<td>Labrador</td>
-										<td>A</td>
-										<td>B</td>
-										<td>C</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
+
 		</div>
 
 		<div id="newAnimalForm" class="modal fade" role="dialog">
@@ -408,12 +312,6 @@
 		  </div>
 		</div>
 
-		<script type="text/javascript">
-
-				
-
-</script>
-
-		<footer>Made With <span class="glyphicon glyphicon-heart"></span>@BattleHackNYC </footer>
+		<footer>Made With <span class="glyphicon glyphicon-heart"></span>  @BattleHackNYC </footer>
 	</body>
 </html>
