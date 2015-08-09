@@ -3,10 +3,12 @@ source 'https://rubygems.org'
 ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.19'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
+
 # Use sqlite3 as the database for Active Record
 gem 'mysql2', platform: :ruby
 gem 'jdbc-mysql', platform: :jruby
 gem 'activerecord-jdbc-adapter', platform: :jruby
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -27,7 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '3.1.10'
-gem 'bcrypt-ruby'
+
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :jruby]
 gem 'puma'

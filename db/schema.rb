@@ -56,8 +56,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "user_first_name",  limit: 45
     t.string  "user_last_name",   limit: 45
     t.string  "user_name",        limit: 45
+<<<<<<< HEAD
     t.string  "user_email",       limit: 45
     t.binary  "user_password",    limit: 16777215
+=======
+>>>>>>> upstream/master
   end
 
   create_table "vaccinations", primary_key: "vaccination_id", force: :cascade do |t|

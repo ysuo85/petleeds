@@ -1,0 +1,2 @@
+class FacebookNotificationsController < ApplicationController
+end
